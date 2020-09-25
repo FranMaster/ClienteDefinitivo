@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             BackgroundImageSource="fondo"
+             x:Class="ClaroNet3.Views.RecargasPage"
+             BindingContext="{Binding Main,Source={StaticResource Locator}}"
+             >
+    <ContentPage.Content>
+        <ScrollView BindingContext="{Binding Recargas}">
+            
+        <Grid >              
+            <Grid >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.1*" />
+                        <RowDefinition/>
+                        <RowDefinition Height="0.1*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid BackgroundColor="Transparent"/>
+                    <Grid Grid.Row="1" BackgroundColor="Transparent">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="8*"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Frame Grid.Column="1" VerticalOptions="CenterAndExpand" Opacity="0.8" CornerRadius="20">
+                            <StackLayout >
+                                <Image Source="cuatrog" MinimumWidthRequest="70" HeightRequest="75"/>
+                                <Frame CornerRadius="15"  Margin="0,0,0,10"  Padding="5" >
+                                    <StackLayout Orientation="Horizontal"
+                                     HorizontalOptions="FillAndExpand">
+                                        <Image HeightRequest="40" WidthRequest="40"
+                                       Source="smartphone"/>
+                                        <Entry HorizontalOptions="FillAndExpand"
+                                       Placeholder="Telefono" 
+                                           Keyboard="Telephone"
+                                           Text="{Binding Telefono,UpdateSourceEventName=PropertyChanged}"/>
+                                    </StackLayout>
+                                </Frame>
+                                <Frame CornerRadius="15" Margin="0,0,0,10"  Padding="5">
+                                    <StackLayout Orientation="Horizontal"
+                                     HorizontalOptions="FillAndExpand">
+                                        <Image HeightRequest="40" WidthRequest="40"
+                                       Source="financial"
+                                       />
+                                        <Entry HorizontalOptions="FillAndExpand"
+                                        Placeholder="Monto"
+                                        Keyboard="Numeric"
+                                        HorizontalTextAlignment="Start" Text="{Binding Monto}"/>
+                                    </StackLayout>
+                                </Frame>
+                                <Frame CornerRadius="15" Margin="0,0,0,10"  Padding="5"
+                                       IsVisible="{Binding ComponentesVisibles}">
+                                    <StackLayout Orientation="Horizontal"
+                                     HorizontalOptions="FillAndExpand">
+                                        <Image HeightRequest="40" WidthRequest="35"
+                                       Source="email"
+                                       />
+                                        <Entry HorizontalOptions="FillAndExpand"
+                                        Placeholder="Dni"
+                                        Keyboard="Numeric"
+                                        HorizontalTextAlignment="Start" Text="{Binding Dni}"/>
+                                    </StackLayout>
+                                </Frame>
+                                <Frame CornerRadius="15" Margin="0,0,0,10"  Padding="5"
+                                       IsVisible="{Binding ComponentesVisibles}">
+                                    <StackLayout Orientation="Horizontal"
+                                     HorizontalOptions="FillAndExpand">
+                                        <Image HeightRequest="40" WidthRequest="40"
+                                       Source="key"
+                                       />
+                                        <Entry HorizontalOptions="FillAndExpand"
+                                        Placeholder="Pin"
+                                        Keyboard="Numeric"
+                                        HorizontalTextAlignment="Start" Text="{Binding Pin}"/>
+                                    </StackLayout>
+                                </Frame>
+                                    <Button Text="Enviar" CornerRadius="15" BackgroundColor="#03254e"
+                                    TextColor="White" FontSize="Medium" FontAttributes="Bold"
+                                    Command="{Binding BtnRecarga}"/>
+                            </StackLayout>
+                        </Frame>
+                    </Grid>
+                    <Grid Grid.Row="2" BackgroundColor="Transparent"/>
+                </Grid>
+            </Grid>
+        </Grid>
+    
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

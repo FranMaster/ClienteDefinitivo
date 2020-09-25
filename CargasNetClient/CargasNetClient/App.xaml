@@ -4,8 +4,19 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+              xmlns:infra="clr-namespace:ClaroNet3.Insfrastructure"
              x:Class="CargasNetClient.App">
     <Application.Resources>
-
+        <ResourceDictionary>
+            <infra:InstanceLocator  x:Key="Locator"/>
+            <!-- Pallete -->
+            <Color x:Key="primary-back-title-color">#03254e</Color>
+            <Color x:Key="primary-title-color">White</Color>
+            <!-- Pallete-end -->
+            <Style ApplyToDerivedTypes="true" TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{StaticResource Key=primary-back-title-color}"/>
+                <Setter Property="BarTextColor" Value="{StaticResource Key=primary-title-color}"/>
+            </Style>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
