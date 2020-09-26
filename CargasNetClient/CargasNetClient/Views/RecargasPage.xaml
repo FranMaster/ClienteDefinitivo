@@ -31,7 +31,7 @@
                         <Frame Grid.Column="1" VerticalOptions="CenterAndExpand" Opacity="0.8" CornerRadius="20">
                             <StackLayout >
                                 <Image Source="cuatrog" MinimumWidthRequest="70" HeightRequest="75"/>
-                                <Frame CornerRadius="15"  Margin="0,0,0,10"  Padding="5" >
+                                    <Frame CornerRadius="15"  Margin="0,0,0,10"  Padding="5"  BorderColor="#03254e">
                                     <StackLayout Orientation="Horizontal"
                                      HorizontalOptions="FillAndExpand">
                                         <Image HeightRequest="40" WidthRequest="40"
@@ -42,7 +42,7 @@
                                            Text="{Binding Telefono,UpdateSourceEventName=PropertyChanged}"/>
                                     </StackLayout>
                                 </Frame>
-                                <Frame CornerRadius="15" Margin="0,0,0,10"  Padding="5">
+                                    <Frame CornerRadius="15" Margin="0,0,0,10" BorderColor="#03254e" Padding="5">
                                     <StackLayout Orientation="Horizontal"
                                      HorizontalOptions="FillAndExpand">
                                         <Image HeightRequest="40" WidthRequest="40"
@@ -54,7 +54,7 @@
                                         HorizontalTextAlignment="Start" Text="{Binding Monto}"/>
                                     </StackLayout>
                                 </Frame>
-                                <Frame CornerRadius="15" Margin="0,0,0,10"  Padding="5"
+                                    <Frame CornerRadius="15" Margin="0,0,0,10"  Padding="5" BorderColor="#03254e"
                                        IsVisible="{Binding ComponentesVisibles}">
                                     <StackLayout Orientation="Horizontal"
                                      HorizontalOptions="FillAndExpand">
@@ -62,12 +62,12 @@
                                        Source="email"
                                        />
                                         <Entry HorizontalOptions="FillAndExpand"
-                                        Placeholder="Dni"
+                                        Placeholder="Email Destinatario"
                                         Keyboard="Numeric"
                                         HorizontalTextAlignment="Start" Text="{Binding Dni}"/>
                                     </StackLayout>
                                 </Frame>
-                                <Frame CornerRadius="15" Margin="0,0,0,10"  Padding="5"
+                                    <Frame CornerRadius="15" Margin="0,0,0,10"  Padding="5" BorderColor="#03254e"
                                        IsVisible="{Binding ComponentesVisibles}">
                                     <StackLayout Orientation="Horizontal"
                                      HorizontalOptions="FillAndExpand">

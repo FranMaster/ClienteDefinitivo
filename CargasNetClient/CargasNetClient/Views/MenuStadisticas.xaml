@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="CargasNetClient.Views.MenuStadisticas">
+    <ContentPage.Content>
+       
+            <Grid Margin="50">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Frame Grid.Column="0"
+                   Grid.Row="0" Margin="2">
+                    <Grid >
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Image Source="CargaNet512x512" />
+                        <Label Text="Nombre opción" Grid.Row="1" HorizontalOptions="Center"
+                           VerticalOptions="Center"/>
+                    </Grid>
+                </Frame>
+            <Frame Grid.Column="0"
+                   Grid.Row="1" Margin="2">
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Image Source="CargaNet512x512" />
+                    <Label Text="Nombre opción" Grid.Row="1" HorizontalOptions="Center"
+                           VerticalOptions="Center"/>
+                </Grid>
+            </Frame>
+            <Frame Grid.Column="1"
+                   Grid.Row="0" Margin="2">
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Image Source="CargaNet512x512" />
+                    <Label Text="Nombre opción" Grid.Row="1" HorizontalOptions="Center"
+                           VerticalOptions="Center"/>
+                </Grid>
+            </Frame>
+            <Frame Grid.Column="1"
+                   Grid.Row="1" Margin="2">
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Image Source="CargaNet512x512" />
+                    <Label Text="Nombre opción" Grid.Row="1" HorizontalOptions="Center"
+                           VerticalOptions="Center"/>
+                </Grid>
+            </Frame>
+
+        </Grid>
+
+     
+        
+        
+    </ContentPage.Content>
+</ContentPage>

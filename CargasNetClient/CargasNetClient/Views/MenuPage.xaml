@@ -8,7 +8,7 @@
              BindingContext="{Binding Main,Source={StaticResource Locator}}"            
              x:Class="ClaroNet3.Views.MenuPage">
     <ContentPage.Content>
-        <Grid  BackgroundColor="#03254e" Opacity="0.8">
+        <Grid  BackgroundColor="#03254e" Opacity="0.95">
            
             <Grid  >
                 <Grid.RowDefinitions>

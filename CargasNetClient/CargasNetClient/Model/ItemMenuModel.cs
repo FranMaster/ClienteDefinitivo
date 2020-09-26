@@ -1,4 +1,5 @@
-﻿using ClaroNet3.ViewModels;
+﻿using CargasNetClient.Views;
+using ClaroNet3.ViewModels;
 using ClaroNet3.Views;
 using GalaSoft.MvvmLight.Command;
 using System;
@@ -25,12 +26,12 @@ namespace ClaroNet3.Model
                 if (Title.Equals("Consultar Saldo"))
                     await MainVewModel.GetInstance.ConsultaSaldo();
                 if (Title.Equals("listar"))
-                    await Task.Run(() =>
-                     MainVewModel.GetInstance.ListarDatos());                     
+                    await Application.Current.MainPage.Navigation.PushAsync(new MenuStadisticas());
+            
             }
             catch (Exception e)
             {
-               await Application.Current.MainPage.DisplayAlert(e.Message, "AVISO", "volver");
+               await Application.Current.MainPage.DisplayAlert("AVISO", e.Message,  "volver");
             }
        }
     }

@@ -1,9 +1,10 @@
-﻿using ClaroNet3.Interfaces;
+﻿using CargasNetClient.Views;
+using ClaroNet3.Interfaces;
 using ClaroNet3.Model;
+using ClaroNet3.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using static ClaroNet3.Model.EventsUtilities;
@@ -19,7 +20,7 @@ namespace ClaroNet3.ViewModels
         #endregion
 
         #region Constructor
-        private  MainVewModel()
+        private MainVewModel()
         {
             Recargas = new RecargasViewModel();
             Recargas.ComponentesVisibles = true;
@@ -49,7 +50,7 @@ namespace ClaroNet3.ViewModels
                 return instance;
             }
 
-        } 
+        }
         #endregion
 
 
@@ -65,7 +66,7 @@ namespace ClaroNet3.ViewModels
 
 
         public async Task ConsultaSaldo()
-        {                                
+        {
             await Task.Run(() =>
             DependencyService.Get<IServiceCaller>()
                        .RealizarLLamadaSaldo("2232"));
@@ -73,12 +74,14 @@ namespace ClaroNet3.ViewModels
 
 
 
-        public   List<string> ListarDatos()
-        {            
-            var Respuesta=  DependencyService.Get<IServiceSms>()
-                     .GetAllSms();
-            return Respuesta;
-               
+        public List<string> ListarDatos()
+        {
+            var Respuesta = DependencyService.Get<IServiceSms>()
+                           .GetAllSms();
+            return Respuesta;                            
+
+
+
         }
 
 

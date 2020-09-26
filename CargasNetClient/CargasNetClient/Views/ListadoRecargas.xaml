@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:col="clr-namespace:System.Collections;assembly=netstandard"
+             mc:Ignorable="d"
+             x:Class="CargasNetClient.Views.ListadoRecargas">
+    <ContentPage.Content>
+        <Grid BackgroundColor="Silver">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <StackLayout>
+                <Frame Margin="4,10,4,1" CornerRadius="30" >
+                    <SearchBar Placeholder="Buscar Recarga"                           
+                   CancelButtonColor="Orange"
+                   PlaceholderColor="Black"
+                   TextColor="Black"
+                   HorizontalTextAlignment="Center"
+                   FontSize="Medium"
+                   FontAttributes="Italic" />
+                </Frame>
+                
+            </StackLayout>
+            
+           
+            <ListView ItemsSource="{Binding Monkeys}"
+                      HasUnevenRows="true"
+                      ItemSelected="OnListViewItemSelected"
+                      ItemTapped="OnListViewItemTapped"
+                      Grid.Row="1">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame IsClippedToBounds="True" CornerRadius="30" 
+                                   Margin="5" >
+                                <Grid Padding="10" >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.RowSpan="2"
+                                           Source="{Binding ImageUrl}"
+                                           Aspect="AspectFill"
+                                           HeightRequest="60"
+                                           WidthRequest="60" />
+                                    <Label Grid.Column="1"
+                                           Text="{Binding Name}"
+                                           FontAttributes="Bold"
+                                           TextColor="Black"
+                                           HorizontalOptions="Center"/>
+                                    <Label Grid.Row="1"
+                                           Grid.Column="1"
+                                           Text="{Binding Location}"
+                                           VerticalOptions="Center" 
+                                           HorizontalOptions="Center"/>
+                                </Grid>
+                            </Frame>
+                           
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>        
+    </ContentPage.Content>
+</ContentPage>
