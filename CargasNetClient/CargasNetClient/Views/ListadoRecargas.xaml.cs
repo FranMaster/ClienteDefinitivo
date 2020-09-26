@@ -4,20 +4,12 @@ using System.Collections.Generic;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace CargasNetClient.Views
+namespace ClaroNet3.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ListadoRecargas : ContentPage
     {
-        void OnListViewItemSelected(object sender, SelectedItemChangedEventArgs e)
-        {
-            Monkey selectedItem = e.SelectedItem as Monkey;
-        }
-
-        void OnListViewItemTapped(object sender, ItemTappedEventArgs e)
-        {
-            Monkey tappedItem = e.Item as Monkey;
-        }
+       
         public IList<Monkey> Monkeys { get; private set; }
 
         public ListadoRecargas()
@@ -78,7 +70,7 @@ namespace CargasNetClient.Views
             });
 
 
-            BindingContext = this;
+         
         }
 
     }

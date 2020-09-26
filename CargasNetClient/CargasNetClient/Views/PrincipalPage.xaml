@@ -12,5 +12,5 @@
              BindingContext="{Binding Main,Source={StaticResource Locator}}"
              x:Class="ClaroNet3.Views.PrincipalPage">
     <local:RecargasPage Title="Recarga" IconImageSource="telephone"/>
-    <local2:ListadoRecargas Title="Listado" IconImageSource="stats"/>
+    <local:ListadoRecargas Title="Listado" IconImageSource="stats"/>
 </TabbedPage>

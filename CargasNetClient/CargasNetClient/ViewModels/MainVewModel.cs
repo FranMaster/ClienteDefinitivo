@@ -1,7 +1,6 @@
-﻿using CargasNetClient.Views;
-using ClaroNet3.Interfaces;
+﻿using ClaroNet3.Interfaces;
 using ClaroNet3.Model;
-using ClaroNet3.Views;
+
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,15 +15,14 @@ namespace ClaroNet3.ViewModels
         #region Properties
         public LoginViewModel Login { get; set; }
         public RecargasViewModel Recargas { get; set; }
+        public ListadoRecargasViewModel ListadoRecargas { get; set; }
         public ObservableCollection<ItemMenuModel> Menu { get; set; }
         #endregion
 
         #region Constructor
         private MainVewModel()
         {
-            Recargas = new RecargasViewModel();
-            Recargas.ComponentesVisibles = true;
-            LoadMenu();
+            ConfiguracionInicial();
             this.Subscribe<List<string>>(Events.SmsRecieved, NuevoMensaje =>
             {
                 Notificacion(NuevoMensaje);
@@ -72,16 +70,11 @@ namespace ClaroNet3.ViewModels
                        .RealizarLLamadaSaldo("2232"));
         }
 
-
-
         public List<string> ListarDatos()
         {
             var Respuesta = DependencyService.Get<IServiceSms>()
                            .GetAllSms();
-            return Respuesta;                            
-
-
-
+            return Respuesta;      
         }
 
 
@@ -89,6 +82,16 @@ namespace ClaroNet3.ViewModels
         {
             Application.Current.MainPage
                 .DisplayAlert("Aviso de mensaje recibido", "e", "volver");
+        }
+
+
+
+        public void ConfiguracionInicial()
+        {
+            Recargas = new RecargasViewModel();
+            ListadoRecargas = new ListadoRecargasViewModel();
+            Recargas.ComponentesVisibles = true;
+            LoadMenu();
         }
     }
 }

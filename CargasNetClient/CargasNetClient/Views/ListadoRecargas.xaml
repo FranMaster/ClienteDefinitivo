@@ -4,14 +4,15 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:col="clr-namespace:System.Collections;assembly=netstandard"
              mc:Ignorable="d"
-             x:Class="CargasNetClient.Views.ListadoRecargas">
+             BindingContext="{Binding Main,Source={StaticResource Locator}}"
+             x:Class="ClaroNet3.Views.ListadoRecargas">
     <ContentPage.Content>
-        <Grid BackgroundColor="Silver">
+        <Grid BackgroundColor="Silver" BindingContext="{Binding ListadoRecargas}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <StackLayout>
+            <StackLayout >
                 <Frame Margin="4,10,4,1" CornerRadius="30" >
                     <SearchBar Placeholder="Buscar Recarga"                           
                    CancelButtonColor="Orange"
@@ -23,40 +24,48 @@
                 </Frame>
                 
             </StackLayout>
-            
-           
-            <ListView ItemsSource="{Binding Monkeys}"
+
+
+            <ListView ItemsSource="{Binding RecargasRealizadass}"
                       HasUnevenRows="true"
-                      ItemSelected="OnListViewItemSelected"
-                      ItemTapped="OnListViewItemTapped"
+                      IsPullToRefreshEnabled="True"
+                      RefreshCommand="{Binding BtnRecargar}"
+                      IsRefreshing="{Binding RefreshAction}"
                       Grid.Row="1">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <Frame IsClippedToBounds="True" CornerRadius="30" 
                                    Margin="5" >
-                                <Grid Padding="10" >
+                                <Grid Padding="5" >
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*"
+                                                          />
                                     </Grid.ColumnDefinitions>
                                     <Image Grid.RowSpan="2"
-                                           Source="{Binding ImageUrl}"
+                                           Source="{Binding UrlImg}"
                                            Aspect="AspectFill"
                                            HeightRequest="60"
                                            WidthRequest="60" />
                                     <Label Grid.Column="1"
-                                           Text="{Binding Name}"
+                                           Text="{Binding Numero}"
                                            FontAttributes="Bold"
                                            TextColor="Black"
                                            HorizontalOptions="Center"/>
                                     <Label Grid.Row="1"
                                            Grid.Column="1"
-                                           Text="{Binding Location}"
+                                           Text="{Binding SaldoCargado}"
+                                           VerticalOptions="Center" 
+                                           HorizontalOptions="Center"/>
+                                    <Label Grid.Row="1" HorizontalTextAlignment="Center"
+                                           Grid.Column="1"
+                                           Text="{Binding Descripcion}"
                                            VerticalOptions="Center" 
                                            HorizontalOptions="Center"/>
                                 </Grid>
