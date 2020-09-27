@@ -60,7 +60,7 @@ namespace ClaroNet3.ViewModels
                 if (string.IsNullOrEmpty(Telefono)
                     || (string.IsNullOrEmpty(Monto))
                     || (string.IsNullOrEmpty(Pin))
-                    || (string.IsNullOrEmpty(Dni)))
+                   )
                 {
                     await Application.Current.MainPage.DisplayAlert("Error", $"LLene todos los campos", "Accept");
                     return;
