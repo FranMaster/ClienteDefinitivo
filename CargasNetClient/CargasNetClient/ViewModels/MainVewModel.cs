@@ -58,8 +58,7 @@ namespace ClaroNet3.ViewModels
             Menu = new ObservableCollection<ItemMenuModel>
             {
                 new ItemMenuModel{Icon="financial",Title="Consultar Saldo"},
-                new ItemMenuModel{Icon="home",Title="Soporte"}
-                
+                new ItemMenuModel{Icon="home",Title="Soporte"}                
              
             };
         }
@@ -67,9 +66,11 @@ namespace ClaroNet3.ViewModels
 
         public async Task ConsultaSaldo()
         {
-            await Task.Run(() =>
+            string result = await Application.Current.MainPage.DisplayPromptAsync("Aviso", "Ingrese su Pin Asignado");
+            if (!string.IsNullOrEmpty(result))
+                await Task.Run(() =>
             DependencyService.Get<IServiceCaller>()
-                       .RealizarLLamadaSaldo("2232"));
+                       .RealizarLLamadaSaldo(result));
         }
 
         public List<InboxSms> ListarDatos()

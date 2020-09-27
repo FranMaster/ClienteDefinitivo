@@ -12,7 +12,7 @@ using Android.Widget;
 
 namespace CargasNetClient.Droid
 {
-    [Activity(Label = "SplashActivity",Theme ="@style/SplashTheme" ,
+    [Activity(Label = "Cargas Net",Theme ="@style/SplashTheme" ,
         MainLauncher =true,NoHistory =true,ConfigurationChanges =Android.Content.PM.ConfigChanges.ScreenSize)]
     public class SplashActivity : Activity
     {
