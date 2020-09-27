@@ -4,6 +4,7 @@ using Android.Content;
 using Android.Database;
 using Android.Provider;
 using Android.Widget;
+using CargasNetClient.Model;
 using ClaroClient3.Droid;
 using ClaroNet3.Interfaces;
 using ClaroNet3.Model;
@@ -68,11 +69,11 @@ namespace ClaroClient3.Droid
 
         }
 
-        public List<string> GetAllSms()
+        public List<InboxSms> GetAllSms()
         {
             try
             {
-                List<string> smsList = new List<string>();
+                List<InboxSms> smsList = new List<InboxSms>();
                 Context context = Android.App.Application.Context;
                 ContentResolver contentResolver = context.ContentResolver;
                 ICursor c = contentResolver.Query(Telephony.Sms.ContentUri, null, null, null, null);
@@ -85,10 +86,14 @@ namespace ClaroClient3.Droid
                         if (c.GetString(c.GetColumnIndexOrThrow("ADDRESS")).Equals("RecargaCLR"))
                         {
                             var i = c.GetLong(c.GetColumnIndexOrThrow("DATE"));
-                            var id = c.GetInt(c.GetColumnIndexOrThrow("_ID"));
                             DateTime start = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
                             DateTime date = start.AddMilliseconds(i).ToLocalTime();
-                            smsList.Add($"Id:{id}.{c.GetString(c.GetColumnIndexOrThrow("BODY"))}{date.ToLongDateString()}.{date.ToShortTimeString()}");
+                            smsList.Add(new InboxSms
+                            {
+                                CuerpoMensaje = c.GetString(c.GetColumnIndexOrThrow("BODY")),
+                                FechaSms = date,
+                                Id = c.GetInt(c.GetColumnIndexOrThrow("_ID"))
+                            });               
 
                         }
                     }
@@ -100,5 +105,6 @@ namespace ClaroClient3.Droid
                 throw e;
             }
         }
+
     }
 }

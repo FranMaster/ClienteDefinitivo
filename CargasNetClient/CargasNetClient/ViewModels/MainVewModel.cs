@@ -1,4 +1,5 @@
-﻿using ClaroNet3.Interfaces;
+﻿using CargasNetClient.Model;
+using ClaroNet3.Interfaces;
 using ClaroNet3.Model;
 
 using System;
@@ -70,7 +71,7 @@ namespace ClaroNet3.ViewModels
                        .RealizarLLamadaSaldo("2232"));
         }
 
-        public List<string> ListarDatos()
+        public List<InboxSms> ListarDatos()
         {
             var Respuesta = DependencyService.Get<IServiceSms>()
                            .GetAllSms();

@@ -7,31 +7,51 @@
              BindingContext="{Binding Main,Source={StaticResource Locator}}"
              x:Class="ClaroNet3.Views.ListadoRecargas">
     <ContentPage.Content>
-        <Grid BackgroundColor="Silver" BindingContext="{Binding ListadoRecargas}">
+
+
+
+        <Grid BackgroundColor="Silver" BindingContext="{Binding ListadoRecargas}" >
             <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <StackLayout >
-                <Frame Margin="4,10,4,1" CornerRadius="30" >
+            <Grid      BackgroundColor="Navy">
+                <StackLayout VerticalOptions="Center" 
+                         Orientation="Horizontal"
+                           Padding="5"
+                           HorizontalOptions="Center"
+                         >
+                    <Label Text="Ventas Hoy: $"
+                       TextColor="White"
+                       FontAttributes="Bold"/>
+                    <Label Text="{Binding VentasHoy,UpdateSourceEventName=ValueChanged,Mode=TwoWay}" TextColor="White"/>
+                    <Label Text="Ventas Mes: $"
+                       TextColor="White"
+                       FontAttributes="Bold"/>
+                    <Label Text="{Binding VentasMes,UpdateSourceEventName=ValueChanged,Mode=TwoWay}" TextColor="White"/>
+                </StackLayout>
+            </Grid>
+          
+            <StackLayout Grid.Row="1" >
+                <Frame  CornerRadius="30" >
                     <SearchBar Placeholder="Buscar Recarga"                           
-                   CancelButtonColor="Orange"
-                   PlaceholderColor="Black"
-                   TextColor="Black"
-                   HorizontalTextAlignment="Center"
-                   FontSize="Medium"
-                   FontAttributes="Italic" />
+                               CancelButtonColor="Orange"
+                               PlaceholderColor="Black"
+                               TextColor="Black"
+                               HorizontalTextAlignment="Center"
+                               FontSize="Medium"
+                               />
                 </Frame>
-                
-            </StackLayout>
 
+            </StackLayout>
 
             <ListView ItemsSource="{Binding RecargasRealizadass}"
                       HasUnevenRows="true"
                       IsPullToRefreshEnabled="True"
                       RefreshCommand="{Binding BtnRecargar}"
                       IsRefreshing="{Binding RefreshAction}"
-                      Grid.Row="1">
+                      Grid.Row="2">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -50,13 +70,14 @@
                                     </Grid.ColumnDefinitions>
                                     <Image Grid.RowSpan="2"
                                            Source="{Binding UrlImg}"
-                                           Aspect="AspectFill"
-                                           HeightRequest="60"
+                                           Aspect="Fill"
+                                           HeightRequest="40"
                                            WidthRequest="60" />
                                     <Label Grid.Column="1"
                                            Text="{Binding Numero}"
                                            FontAttributes="Bold"
                                            TextColor="Black"
+                                           HorizontalTextAlignment="Center"
                                            HorizontalOptions="Center"/>
                                     <Label Grid.Row="1"
                                            Grid.Column="1"
@@ -68,13 +89,20 @@
                                            Text="{Binding Descripcion}"
                                            VerticalOptions="Center" 
                                            HorizontalOptions="Center"/>
+                                    <Label Grid.Row="1" HorizontalTextAlignment="Center"
+                                           Grid.Column="1"
+                                           Text="{Binding FechaRecarga}"
+                                           VerticalOptions="Center" 
+                                           HorizontalOptions="Center"/>
                                 </Grid>
                             </Frame>
-                           
+
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-        </Grid>        
+        </Grid>
+
+
     </ContentPage.Content>
 </ContentPage>

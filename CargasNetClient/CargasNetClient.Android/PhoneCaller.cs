@@ -33,7 +33,7 @@ namespace ClaroClient3.Droid
             }
             catch (System.Exception e )
             {
-                throw;
+                throw e;
             }
         }
 
@@ -61,7 +61,7 @@ namespace ClaroClient3.Droid
             }
             catch (System.Exception e)
             {
-                throw;
+                throw e;
             }
         }
     }
