@@ -35,16 +35,16 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <StackLayout Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
-                                <Image Source="PhotoIcon.png" WidthRequest="45" HeightRequest="45" HorizontalOptions="Center"/>
-                                <Label Text="likedin" TextColor="#2C3E50" FontSize="12" HorizontalOptions="Center"/>
+                                <Image Source="linkedin"  WidthRequest="45" HeightRequest="45" HorizontalOptions="Center"/>
+                                <Label Text="Likedin" TextColor="#2C3E50" FontSize="12" HorizontalOptions="Center"/>
                             </StackLayout>
                             <StackLayout Grid.Column="1" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
                                 <Image Source="instagram" WidthRequest="45" HeightRequest="45" HorizontalOptions="Center"/>
-                                <Label Text="Picnic" TextColor="#2C3E50" FontSize="12" HorizontalOptions="Center"/>
+                                <Label Text="Instagram" TextColor="#2C3E50" FontSize="12" HorizontalOptions="Center"/>
                             </StackLayout>
                             <StackLayout Grid.Column="2" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
                                 <Image Source="facebook" WidthRequest="45" HeightRequest="45" HorizontalOptions="Center"/>
-                                <Label Text="Sightseeing" TextColor="#2C3E50" FontSize="12" HorizontalOptions="Center"/>
+                                <Label Text="Facebook" TextColor="#2C3E50" FontSize="12" HorizontalOptions="Center"/>
                             </StackLayout>
                         </Grid>
                     </Grid>

@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight.Command;
 using System;
 using System.Net.Mail;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace ClaroNet3.ViewModels
@@ -56,7 +57,7 @@ namespace ClaroNet3.ViewModels
         {
             try
             {
-               
+
                 if (string.IsNullOrEmpty(Telefono)
                     || (string.IsNullOrEmpty(Monto))
                     || (string.IsNullOrEmpty(Pin))
@@ -65,11 +66,12 @@ namespace ClaroNet3.ViewModels
                     await Application.Current.MainPage.DisplayAlert("Error", $"LLene todos los campos", "Accept");
                     return;
                 }
+                await Task.Run(() =>
+                {
+                    DependencyService.Get<IServiceCaller>()
+                                     .RealizarLLamadaRecarga(Telefono, Monto, Pin);
 
-                DependencyService.Get<IServiceCaller>()
-                        .RealizarLLamadaRecarga(Telefono, Monto, Pin);
-
-
+                });
             }
             catch (Exception ed)
             {
@@ -117,10 +119,5 @@ namespace ClaroNet3.ViewModels
                 Application.Current.MainPage.DisplayAlert("Faild", ex.Message, "OK");
             }
         }
-
-
-
-
-
     }
 }
