@@ -21,8 +21,8 @@ namespace ClaroNet3.Model
        {
             try
             {
-                if (Title.Equals("Login"))
-                    await Application.Current.MainPage.Navigation.PushAsync(new LoginPage());
+                if (Title.Equals("Soporte"))
+                    await Application.Current.MainPage.Navigation.PushAsync(new SoporteView());
                 if (Title.Equals("Consultar Saldo"))
                     await MainVewModel.GetInstance.ConsultaSaldo();
                 if (Title.Equals("listar"))

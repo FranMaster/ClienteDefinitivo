@@ -70,8 +70,8 @@
                                     </Grid.ColumnDefinitions>
                                     <Image Grid.RowSpan="2"
                                            Source="{Binding UrlImg}"
-                                           Aspect="Fill"
-                                           HeightRequest="40"
+                                           Aspect="AspectFit"
+                                           HeightRequest="25"
                                            WidthRequest="60" />
                                     <Label Grid.Column="1"
                                            Text="{Binding Numero}"

@@ -57,9 +57,10 @@ namespace ClaroNet3.ViewModels
         {
             Menu = new ObservableCollection<ItemMenuModel>
             {
-                new ItemMenuModel{Icon="home",Title="Login"},
                 new ItemMenuModel{Icon="financial",Title="Consultar Saldo"},
-                new ItemMenuModel{Icon="Binoculars",Title="listar"}
+                new ItemMenuModel{Icon="home",Title="Soporte"}
+                
+             
             };
         }
 

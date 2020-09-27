@@ -54,20 +54,7 @@
                                         HorizontalTextAlignment="Start" Text="{Binding Monto}"/>
                                     </StackLayout>
                                 </Frame>
-                                    <Frame CornerRadius="15" Margin="0,0,0,10"  Padding="5" BorderColor="#03254e"
-                                       IsVisible="{Binding ComponentesVisibles}">
-                                    <StackLayout Orientation="Horizontal"
-                                     HorizontalOptions="FillAndExpand">
-                                        <Image HeightRequest="40" WidthRequest="35"
-                                       Source="email"
-                                       />
-                                        <Entry HorizontalOptions="FillAndExpand"
-                                        Placeholder="Email Destinatario"
-                                        Keyboard="Numeric"
-                                        HorizontalTextAlignment="Start" Text="{Binding Dni}"/>
-                                    </StackLayout>
-                                </Frame>
-                                    <Frame CornerRadius="15" Margin="0,0,0,10"  Padding="5" BorderColor="#03254e"
+                                <Frame CornerRadius="15" Margin="0,0,0,10"  Padding="5" BorderColor="#03254e"
                                        IsVisible="{Binding ComponentesVisibles}">
                                     <StackLayout Orientation="Horizontal"
                                      HorizontalOptions="FillAndExpand">
