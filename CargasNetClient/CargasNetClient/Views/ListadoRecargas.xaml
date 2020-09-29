@@ -56,8 +56,11 @@
                     <DataTemplate>
                         <ViewCell>
                             <Frame IsClippedToBounds="True" CornerRadius="30" 
-                                   Margin="5" >
+                                   Margin="5" >                                
                                 <Grid Padding="5" >
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding NavigateCommand}"/>
+                                    </Grid.GestureRecognizers>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="Auto" />

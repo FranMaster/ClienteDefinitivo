@@ -94,30 +94,6 @@ namespace ClaroNet3.ViewModels
         }
 
 
-        private void EnviarMensajeDeTexto(string destinatario, string mensaje)
-        {
-            try
-            {
-
-                MailMessage mail = new MailMessage();
-                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
-                mail.From = new MailAddress("pruebascarganet2020@gmail.com");
-                mail.To.Add(destinatario);
-                mail.Subject = "Factura";
-                mail.Body = mensaje;
-                mail.CC.Add("pruebascarganet2020@gmail.com");
-                mail.IsBodyHtml = true;
-                SmtpServer.Port = 587;
-                SmtpServer.Host = "smtp.gmail.com";
-                SmtpServer.EnableSsl = true;
-                SmtpServer.UseDefaultCredentials = false;
-                SmtpServer.Credentials = new System.Net.NetworkCredential("pruebascarganet2020@gmail.com", "Adrian123456");
-                SmtpServer.Send(mail);
-            }
-            catch (Exception ex)
-            {
-                Application.Current.MainPage.DisplayAlert("Faild", ex.Message, "OK");
-            }
-        }
+    
     }
 }

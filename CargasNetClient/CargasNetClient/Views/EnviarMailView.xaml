@@ -4,11 +4,10 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             BackgroundImageSource="FondoLogin"
-             BindingContext="{Binding Main,Source={StaticResource Locator}}"
-             x:Class="ClaroNet3.Views.LoginPage">
+             BackgroundImageSource="fondo"
+             x:Class="ClaroNet3.Views.EnviarMailView">
     <ContentPage.Content>
-        <Grid BindingContext="{Binding Login}">
+        <Grid >
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="0.1*" />
@@ -25,41 +24,25 @@
                     </Grid.ColumnDefinitions>
                     <Frame Grid.Column="1" VerticalOptions="CenterAndExpand" CornerRadius="20"
                        Opacity="0.8">
-                        <StackLayout >
-                            <Image Source="loginuser" MinimumWidthRequest="70" HeightRequest="120"/>
+                        <StackLayout  >
+                         
                             <Frame CornerRadius="15"  Margin="0,0,0,10"  Padding="5" >
                                 <StackLayout Orientation="Horizontal"
                                      HorizontalOptions="FillAndExpand">
                                     <Image HeightRequest="40" WidthRequest="40"
-                                       Source="userImg"/>
+                                       Source="email"/>
                                     <Entry HorizontalOptions="FillAndExpand"
-                                       Placeholder="Email" Text="{Binding Email}"/>
-                                </StackLayout>
-                            </Frame>
-                            <Frame CornerRadius="15" Margin="0,0,0,10"  Padding="5">
-                                <StackLayout Orientation="Horizontal"
-                                     HorizontalOptions="FillAndExpand">
-                                    <Image HeightRequest="40" WidthRequest="40"
-                                       Source="lock"
-                                       />
-                                    <Entry HorizontalOptions="FillAndExpand"
-                                       IsPassword="True" Placeholder="Password"
-                                       HorizontalTextAlignment="Start" Text="{Binding Password}"/>
+                                       Placeholder="Email" x:Name="TxtEmail" />
                                 </StackLayout>
                             </Frame>
                             <Button 
-                                Text="Entrar" 
+                                Text="Enviar Mail" 
                                 CornerRadius="15"
-                                BackgroundColor="red"
+                                BackgroundColor="Navy"
                                 TextColor="White"
-                                FontSize="Large" 
                                 FontAttributes="Bold"
-                                Command="{Binding BtnLogIn}"/>
-                            <Button 
-                                Text="Trabajar sin Conexión" 
-                                CornerRadius="15"
-                                TextColor="White"                     
-                                Command="{Binding BtnLogInNoConect}"/>
+                                Clicked="Button_Clicked"/>
+        
                         </StackLayout>
                     </Frame>
 
@@ -69,6 +52,6 @@
 
             </Grid>
         </Grid>
-        
+
     </ContentPage.Content>
 </ContentPage>
