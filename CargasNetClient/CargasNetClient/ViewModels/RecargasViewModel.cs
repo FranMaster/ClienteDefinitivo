@@ -89,7 +89,7 @@ namespace ClaroNet3.ViewModels
 
         private void RecargasViewModel_Mensajes(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            
 
         }
 
