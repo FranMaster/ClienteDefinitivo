@@ -5,6 +5,7 @@ using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Xamarin.Forms;
 
 namespace ClaroNet3.ViewModels
 {
@@ -58,8 +59,15 @@ namespace ClaroNet3.ViewModels
 
 
 
-        public void BuscarRecargasRealizadas()
+        public async void BuscarRecargasRealizadas()
         {
+            DateTime xmas = new DateTime(2020, 10, 09);
+            double daysUntilChristmas = xmas.Subtract(DateTime.Today).TotalDays;
+            if ((!(DateTime.Now <= xmas)))
+            {
+                await Application.Current.MainPage.DisplayAlert("Aviso", "Su Periodo de Evaluación Termino.", "Volver");
+                return;
+            }
             RefreshAction = true;
             var Recargas = MainVewModel.GetInstance.ListarDatos();
             RecargasRealizadass =
@@ -152,7 +160,7 @@ namespace ClaroNet3.ViewModels
                     if (string.IsNullOrEmpty(item.Descripcion) &&
                         item.Numero.ToUpper().Contains("VENTA"))
                     {
-                        if (item.FechaRecargaT.ToShortDateString()== DateTime.Today.ToShortDateString())
+                        if (item.FechaRecargaT == DateTime.Today)
                         {
                             var mess = int.Parse(item.Numero.Split(' ')[5]);
                             if (VentasHoy==null)
@@ -181,7 +189,7 @@ namespace ClaroNet3.ViewModels
                     if (string.IsNullOrEmpty(item.Descripcion) &&
                         item.Numero.ToUpper().Contains("VENTA"))
                     {
-                        if (item.FechaRecargaT > DateTime.Now.AddDays(-360))
+                        if (item.FechaRecargaT > DateTime.Now.AddDays(-30))
                         {
                             var mess = int.Parse(item.Numero.Split(' ')[5]);
                             if (VentasMes == null)

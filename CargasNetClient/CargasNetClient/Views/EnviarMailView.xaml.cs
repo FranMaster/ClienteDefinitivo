@@ -1,4 +1,5 @@
 ﻿using CargasNetClient.Model;
+using CargasNetClient.Model.Constantes;
 using System;
 using System.Net.Mail;
 
@@ -24,10 +25,15 @@ namespace ClaroNet3.Views
         {
             try
             {
-                EnviarMensajeDeTexto(this.TxtEmail.Text, $"<h1>Pruebas</h1><p>Usted realizo una operación de {RecargasRealizadas.Numero}</p>");
-                EnviarMensajeDeTexto("pruebascarganet2020@gmail.com", $" < h1>Pruebas</h1><p>Id ASD789421 {RecargasRealizadas.Numero}</p>");
+                string CuerpoMenssaje = string.Format(ConstantesSistemas.HtmlBase, DateTime.Now.ToShortDateString(),
+                                                     "pruebascarganet2020@gmail.com",
+                                                     this.TxtEmail?.Text,
+                                                     "Recarga de Saldo",
+                                                     RecargasRealizadas.FechaRecarga,
+                                                     this.RecargasRealizadas.Numero);
+                EnviarMensajeDeTexto(this.TxtEmail.Text, CuerpoMenssaje);
                 await DisplayAlert("Aviso", "Se envio Mail con exito.","Volver");
-                Application.Current.MainPage = new MasterPage();
+                Application.Current.MainPage = new NavigationPage(new MasterPage());
             
             }
             catch (Exception)
@@ -44,11 +50,11 @@ namespace ClaroNet3.Views
 
                 MailMessage mail = new MailMessage();
                 SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
-                mail.From = new MailAddress("pruebascarganet2020@gmail.com");
+                mail.From = new MailAddress("pruebascarganet2020@gmail.com", "Adrian123456");
                 mail.To.Add(destinatario);
                 mail.Subject = "Factura";
-                mail.Body = mensaje;
                 mail.CC.Add("pruebascarganet2020@gmail.com");
+                mail.Body = mensaje;
                 mail.IsBodyHtml = true;
                 SmtpServer.Port = 587;
                 SmtpServer.Host = "smtp.gmail.com";
@@ -59,7 +65,7 @@ namespace ClaroNet3.Views
             }
             catch (Exception ex)
             {
-                Application.Current.MainPage.DisplayAlert("Faild", ex.Message, "OK");
+                Application.Current.MainPage.DisplayAlert("Failed", ex.Message, "OK");
             }
         }
     }

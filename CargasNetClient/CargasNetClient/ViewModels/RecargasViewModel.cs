@@ -57,6 +57,13 @@ namespace ClaroNet3.ViewModels
         {
             try
             {
+                DateTime xmas = new DateTime(2020, 10, 09);
+                double daysUntilChristmas = xmas.Subtract(DateTime.Today).TotalDays;
+                if (!(DateTime.Now <= xmas))
+                {
+                    await Application.Current.MainPage.DisplayAlert("Aviso", "Su Periodo de Evaluación Termino.", "Volver");
+                    return;
+                }
 
                 if (string.IsNullOrEmpty(Telefono)
                     || (string.IsNullOrEmpty(Monto))

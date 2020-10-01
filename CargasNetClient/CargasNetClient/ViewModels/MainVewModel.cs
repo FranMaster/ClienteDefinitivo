@@ -23,11 +23,9 @@ namespace ClaroNet3.ViewModels
         #region Constructor
         private MainVewModel()
         {
+           
             ConfiguracionInicial();
-            this.Subscribe<List<string>>(Events.SmsRecieved, NuevoMensaje =>
-            {
-                Notificacion(NuevoMensaje);
-            });
+         
         }
 
         private void Notificacion(List<string> Inbox)
