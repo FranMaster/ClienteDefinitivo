@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             BackgroundColor="Silver"
+             Title="Revisa tu Mail"
+             x:Class="CargasNetClient.Views.Confirmacion">
+    <ContentPage.Content>
+        <Grid >
+            <Image Source="fondo" Aspect="Fill"></Image>
+            <Frame  BackgroundColor="White"
+                    Opacity="0.9"
+                    Margin="10"
+                    CornerRadius="10"                 
+                    VerticalOptions="Center"
+                    >
+                <StackLayout VerticalOptions="EndAndExpand" >
+                    <StackLayout HorizontalOptions="Center">
+                        <Image Source="Logo" Aspect="AspectFit"
+                               HeightRequest="70"
+                            />
+                    </StackLayout>
+                    
+                    <Entry Opacity="0.8"
+                           Keyboard="Numeric"
+                           Placeholder="Codigo Seguridad"   
+                           HorizontalTextAlignment="Center"
+                           MaxLength="4"
+                           Margin="10"
+                           VerticalOptions="Center"/>
+                    <Label Text="00:01" Margin="10" HorizontalOptions="Center"/>
+                    <Button Text="Enviar"
+                            BackgroundColor="Navy"
+                            TextColor="White"
+                            CornerRadius="5"
+                            Margin="10">                        
+                    </Button>
+                </StackLayout>
+            </Frame>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"           
+             Title="Registro"
+             x:Class="CargasNetClient.Views.Registro">
+    <ContentPage.Content>
+        <Grid >
+            <Image Source="fondo" Aspect="Fill"></Image>
+            <Frame  BackgroundColor="White"
+                    Opacity="0.9"
+                    Margin="15"
+                    HasShadow="True"
+                    CornerRadius="10"                 
+                    VerticalOptions="Center">
+                <StackLayout VerticalOptions="EndAndExpand" >
+                    <StackLayout HorizontalOptions="Center">
+                        <Image Source="Logo" Aspect="AspectFit"
+                               HeightRequest="70" />
+                    </StackLayout>                    
+                        <StackLayout Padding="30">
+                           
+                                <StackLayout Orientation="Horizontal"
+                                     HorizontalOptions="FillAndExpand">
+                                    <Image HeightRequest="40" WidthRequest="40"
+                                       Source="smartphone"/>
+                                    <Entry HorizontalOptions="FillAndExpand"
+                                       Placeholder="Telefono" 
+                                           Keyboard="Telephone"
+                                           Text="{Binding Telefono,UpdateSourceEventName=PropertyChanged}"/>
+                                </StackLayout>
+                           
+                           
+                           
+                                <StackLayout Orientation="Horizontal"
+                                     HorizontalOptions="FillAndExpand">
+                                    <Image HeightRequest="40" WidthRequest="40"
+                                       Source="key"
+                                       />
+                                    <Entry HorizontalOptions="FillAndExpand"
+                                        Placeholder="Pin"
+                                        Keyboard="Numeric"
+                                        HorizontalTextAlignment="Start" Text="{Binding Pin}"/>
+                                </StackLayout>                           
+                        
+                        
+                            <StackLayout Orientation="Horizontal"
+                                     HorizontalOptions="FillAndExpand">
+                                <Image HeightRequest="40" WidthRequest="40"
+                                       Source="email"
+                                       />
+                                <Entry HorizontalOptions="FillAndExpand"
+                                        Placeholder="Mail"
+                                        Keyboard="Numeric"
+                                        HorizontalTextAlignment="Start" Text="{Binding Pin}"/>
+                            </StackLayout>
+                        
+                        <Button Text="Enviar" CornerRadius="15" BackgroundColor="#03254e"
+                                    TextColor="White" />
+                        </StackLayout>
+                 
+                </StackLayout>
+            </Frame>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

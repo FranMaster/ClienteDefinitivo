@@ -2,7 +2,7 @@
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
+using CargasNetClient.Views;
 namespace CargasNetClient
 {
     public partial class App : Application
@@ -11,7 +11,7 @@ namespace CargasNetClient
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new  MasterPage());
+            MainPage = new NavigationPage(new  Registro());
         }
 
         protected override void OnStart()
