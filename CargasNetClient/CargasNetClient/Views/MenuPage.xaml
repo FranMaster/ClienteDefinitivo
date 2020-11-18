@@ -8,21 +8,20 @@
              BindingContext="{Binding Main,Source={StaticResource Locator}}"            
              x:Class="ClaroNet3.Views.MenuPage">
     <ContentPage.Content>
-        <Grid  BackgroundColor="#03254e" Opacity="0.95">
-           
-            <Grid  >
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="0.5*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Frame   BackgroundColor="#03254e">
-                    <Frame Margin="2" CornerRadius="25" HasShadow="True" Opacity="0.9">
-                        <Image Source="SplashScreenLogo" Aspect="AspectFill">
-                        </Image>
-                    </Frame>
-                </Frame>
-            
-                <ListView  Grid.Row="1"            
+        <Grid    >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <ImageButton Source="logo"
+                         BackgroundColor="White"
+                         Margin="80"
+                         WidthRequest="200"
+                         Aspect="AspectFit"
+                         />
+
+
+            <ListView Grid.Row="1"                  
                 ItemsSource="{Binding Menu}"
                 HasUnevenRows="True"
                 SeparatorVisibility="None">
@@ -35,14 +34,21 @@
                                     </Grid.GestureRecognizers>
                                     <StackLayout Orientation="Horizontal">
                                         <Image Margin="40,10,20,10" Source="{Binding Icon}" WidthRequest="35" HeightRequest="35" HorizontalOptions="Start" VerticalOptions="Center"/>
-                                        <Label Text="{Binding Title}" TextColor="#ffff" FontSize="18" VerticalOptions="Center"/>
+                                        <Label Text="{Binding Title}" TextColor="Black" FontSize="18" VerticalOptions="Center"/>
                                     </StackLayout>                                  
                                 </Grid>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-            </Grid>
-        </Grid>
-     </ContentPage.Content>
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="Center" 
+                         VerticalOptions="End"
+                         Grid.Row="1"
+                         >
+                <Label Text="Id:"/>
+                <Label Text="1"/>
+            </StackLayout>
+        </Grid>    
+    </ContentPage.Content>
 </ContentPage>

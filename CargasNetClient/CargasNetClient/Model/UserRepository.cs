@@ -46,12 +46,12 @@ namespace CargasNetClient.Model
         }
 
        
-        public int AddNewUser(string username,string password,string email)
+        public int AddNewUser(string username,string password,string email,string codigosql)
         {
             int result = 0;
             try
             {
-                result = cnn.Insert(new Users { Usuario = username, Email = email, Password = password });
+                result = cnn.Insert(new Users { Usuario = username, Email = email, Password = password,CodigoSql=codigosql });
 
             }
             catch (Exception e)
@@ -61,11 +61,11 @@ namespace CargasNetClient.Model
             return result;
         }
 
-        public IEnumerable<Users> GetAllUsers()
+        public IList<Users> GetAllUsers()
         {
             try
             {
-                return cnn.Table<Users>();
+                return cnn.Table<Users>().ToList();
             }
             catch (Exception e)
             {

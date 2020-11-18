@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CargasNetClient.Android", "CargasNetClient\CargasNetClient.Android\CargasNetClient.Android.csproj", "{C5D22347-BC91-4DDA-80F0-537AF234053F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CargasNetClient", "CargasNetClient\CargasNetClient\CargasNetClient.csproj", "{DA3E99BE-3531-45F7-B008-1E1AA89A5269}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CargasNetClient", "CargasNetClient\CargasNetClient\CargasNetClient.csproj", "{DA3E99BE-3531-45F7-B008-1E1AA89A5269}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiConsumer", "CargasNetClient\ApiConsumer-2.0\ApiConsumer\ApiConsumer.csproj", "{20C28A3F-6267-4A16-AC9D-EBB3BFB486CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +27,10 @@ Global
 		{DA3E99BE-3531-45F7-B008-1E1AA89A5269}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA3E99BE-3531-45F7-B008-1E1AA89A5269}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DA3E99BE-3531-45F7-B008-1E1AA89A5269}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{20C28A3F-6267-4A16-AC9D-EBB3BFB486CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20C28A3F-6267-4A16-AC9D-EBB3BFB486CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20C28A3F-6267-4A16-AC9D-EBB3BFB486CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20C28A3F-6267-4A16-AC9D-EBB3BFB486CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

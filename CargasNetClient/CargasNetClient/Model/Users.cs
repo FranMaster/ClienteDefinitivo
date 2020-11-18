@@ -16,6 +16,8 @@ namespace CargasNetClient.Model
         public string Password { get; set; }
         [MaxLength(100), Unique]
         public string Email { get; set; }
+        [MaxLength(100), Unique]
+        public string CodigoSql { get; set; }
 
     }
 }

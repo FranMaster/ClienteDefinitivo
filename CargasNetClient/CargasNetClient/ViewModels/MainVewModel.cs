@@ -1,7 +1,8 @@
 ﻿using CargasNetClient.Model;
+using CargasNetClient.ViewModels;
 using ClaroNet3.Interfaces;
 using ClaroNet3.Model;
-
+using ClaroNet3.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,6 +17,7 @@ namespace ClaroNet3.ViewModels
         #region Properties
         public LoginViewModel Login { get; set; }
         public RecargasViewModel Recargas { get; set; }
+        public RegistroViewModel Registro { get; set; }
         public ListadoRecargasViewModel ListadoRecargas { get; set; }
         public ObservableCollection<ItemMenuModel> Menu { get; set; }
         #endregion
@@ -23,9 +25,7 @@ namespace ClaroNet3.ViewModels
         #region Constructor
         private MainVewModel()
         {
-           
-            ConfiguracionInicial();
-         
+               
         }
 
         private void Notificacion(List<string> Inbox)

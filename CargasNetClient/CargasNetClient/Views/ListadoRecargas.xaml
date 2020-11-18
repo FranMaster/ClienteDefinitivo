@@ -7,109 +7,53 @@
              BindingContext="{Binding Main,Source={StaticResource Locator}}"
              x:Class="ClaroNet3.Views.ListadoRecargas">
     <ContentPage.Content>
-
-
-
-        <Grid BackgroundColor="Silver" BindingContext="{Binding ListadoRecargas}" >
+        <Grid BindingContext="{Binding ListadoRecargas}" BackgroundColor="Silver" >
             <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Grid  BackgroundColor="Navy">
-                <StackLayout VerticalOptions="Center"                          
-                           Padding="5"
-                           HorizontalOptions="Center"
-                         >
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="Ventas Hoy: $"
-                       TextColor="White"
-                       FontAttributes="Bold"/>
-                        <Label Text="{Binding VentasHoy,UpdateSourceEventName=ValueChanged,Mode=TwoWay}" TextColor="White"/>
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="Ventas Mes: $"
-                       TextColor="White"
-                       FontAttributes="Bold"/>
-                        <Label Text="{Binding VentasMes,UpdateSourceEventName=ValueChanged,Mode=TwoWay}" TextColor="White"/>
-                    </StackLayout>
-
+            <StackLayout BackgroundColor="White" >
+                <Label Text="Oficina Bragado" 
+                       FontSize="Medium"
+                       HorizontalTextAlignment="Center"/>                
+                <StackLayout                    
+                    HorizontalOptions="Center"
+                    Orientation="Horizontal">
+                    <Button Text="Hoy" Command="{Binding BtnHoy}"/>
+                    <Button Text="Semana" Command="{Binding BtnSemana}"/>
+                    <Button Text="Mes" Command="{Binding BtnMes}"/>
                 </StackLayout>
-            </Grid>
-
-            <StackLayout Grid.Row="1" >
-                <Frame  CornerRadius="30" >
-                    <SearchBar Placeholder="Buscar Recarga"                           
-                               CancelButtonColor="Orange"
-                               PlaceholderColor="Black"
-                               TextColor="Black"
-                               HorizontalTextAlignment="Center"
-                               FontSize="Medium"
-                               />
-                </Frame>
-
             </StackLayout>
-
-            <ListView ItemsSource="{Binding RecargasRealizadass}"
-                      HasUnevenRows="true"
+            <ListView Grid.Row="1"
+                      HasUnevenRows="True"
                       IsPullToRefreshEnabled="True"
                       RefreshCommand="{Binding BtnRecargar}"
                       IsRefreshing="{Binding RefreshAction}"
-                      Grid.Row="2">
+                      BackgroundColor="White"
+                      ItemsSource="{Binding RecargasRealizadass}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Frame IsClippedToBounds="True" CornerRadius="30" 
-                                   Margin="5" >
-                                <Grid Padding="5" >
-                                    <Grid.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding NavigateCommand}"/>
-                                    </Grid.GestureRecognizers>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="*"
-                                                          />
-                                    </Grid.ColumnDefinitions>
-                                    <Image Grid.RowSpan="2"
-                                           Source="{Binding UrlImg}"
-                                           Aspect="AspectFit"
-                                           HeightRequest="25"
-                                           WidthRequest="60" />
-                                    <Label Grid.Column="1"
-                                           Text="{Binding Numero}"
-                                           FontAttributes="Bold"
-                                           TextColor="Black"
-                                           HorizontalTextAlignment="Center"
-                                           HorizontalOptions="Center"/>
-                                    <Label Grid.Row="1"
-                                           Grid.Column="1"
-                                           Text="{Binding SaldoCargado}"
-                                           VerticalOptions="Center" 
-                                           HorizontalOptions="Center"/>
-                                    <Label Grid.Row="1" HorizontalTextAlignment="Center"
-                                           Grid.Column="1"
-                                           Text="{Binding Descripcion}"
-                                           VerticalOptions="Center" 
-                                           HorizontalOptions="Center"/>
-                                    <Label Grid.Row="1" HorizontalTextAlignment="Center"
-                                           Grid.Column="1"
-                                           Text="{Binding FechaRecarga}"
-                                           VerticalOptions="Center" 
-                                           HorizontalOptions="Center"/>
-                                </Grid>
-                            </Frame>
-
+                            <Grid>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding NavigateCommand}"/>
+                                </Grid.GestureRecognizers>
+                                <StackLayout Orientation="Horizontal" 
+                                         Margin="10">
+                                    <Image Source="{Binding UrlImg}"
+                                       HeightRequest="30"
+                                       HorizontalOptions="Start"
+                                       WidthRequest="35"></Image>
+                                    <Label Text="{Binding Numero}"   
+                                       Padding="10"
+                                       VerticalTextAlignment="Center"
+                                       />
+                                </StackLayout>
+                            </Grid>                            
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-            </ListView>
+            </ListView>   
         </Grid>
-
-
     </ContentPage.Content>
 </ContentPage>

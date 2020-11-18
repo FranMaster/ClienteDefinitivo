@@ -18,9 +18,10 @@ namespace ClaroNet3.ViewModels
         public long? VentasHoy
         {
             get { return _VentasHoy; }
-            set { 
-                _VentasHoy = value;                             
-                OnPropertyChanged(nameof(VentasHoy)); 
+            set
+            {
+                _VentasHoy = value;
+                OnPropertyChanged(nameof(VentasHoy));
             }
         }
 
@@ -49,39 +50,71 @@ namespace ClaroNet3.ViewModels
 
 
         public ListadoRecargasViewModel()
-        {          
-
+        {
+            BuscarRecargasRealizadas();
         }
 
 
         public RelayCommand BtnRecargar
         => new RelayCommand(BuscarRecargasRealizadas);
 
+        public RelayCommand BtnHoy
+      => new RelayCommand(BuscarHoy);
+        public RelayCommand BtnSemana
+     => new RelayCommand(BuscarSemana);
+        public RelayCommand BtnMes
+      => new RelayCommand(BuscarMes);
 
 
-        public async void BuscarRecargasRealizadas()
+        public  void BuscarHoy()
         {
-            DateTime xmas = new DateTime(2020, 10, 09);
-            double daysUntilChristmas = xmas.Subtract(DateTime.Today).TotalDays;
-            if ((!(DateTime.Now <= xmas)))
-            {
-                await Application.Current.MainPage.DisplayAlert("Aviso", "Su Periodo de Evaluación Termino.", "Volver");
-                return;
-            }
+            RefreshAction = true;
+            var Recargas = MainVewModel.GetInstance.ListarDatos();
+            RecargasRealizadass =
+                new ObservableCollection<RecargasRealizadas>(AdecuarRespuesta(Recargas,"HOY"));
+            RefreshAction = false;
+        }
+        public  void BuscarSemana()
+        {
+            RefreshAction = true;
+            var Recargas = MainVewModel.GetInstance.ListarDatos();
+            RecargasRealizadass =
+                new ObservableCollection<RecargasRealizadas>(AdecuarRespuesta(Recargas, "SEMANA"));
+            RefreshAction = false;
+        }
+        public  void BuscarMes()
+        {
+            RefreshAction = true;
+            var Recargas = MainVewModel.GetInstance.ListarDatos();
+            RecargasRealizadass =
+                new ObservableCollection<RecargasRealizadas>(AdecuarRespuesta(Recargas, "MES"));
+            RefreshAction = false;
+        }
+
+
+
+        public  void BuscarRecargasRealizadas()
+        {
+            //DateTime xmas = new DateTime(2020, 10, 09);
+            //double daysUntilChristmas = xmas.Subtract(DateTime.Today).TotalDays;
+            //if ((!(DateTime.Now <= xmas)))
+            //{
+            //    await Application.Current.MainPage.DisplayAlert("Aviso", "Su Periodo de Evaluación Termino.", "Volver");
+            //    return;
+            //}
             RefreshAction = true;
             var Recargas = MainVewModel.GetInstance.ListarDatos();
             RecargasRealizadass =
                 new ObservableCollection<RecargasRealizadas>(AdecuarRespuesta(Recargas));
             RefreshAction = false;
-            CalcularVentasHoy();
-            CalcularVentasMes();
+           
         }
 
-        private List<RecargasRealizadas> AdecuarRespuesta(List<InboxSms> recargas)
+        private List<RecargasRealizadas> AdecuarRespuesta(List<InboxSms> recargas,string filtro="ALL")
         {
             List<RecargasRealizadas> Recargas =
                 new List<RecargasRealizadas>();
-            Filtro(recargas, ref Recargas, "ALL");
+            Filtro(recargas, ref Recargas, filtro);
             return Recargas;
         }
 
@@ -141,13 +174,85 @@ namespace ClaroNet3.ViewModels
                             rec.Numero = mess[1];
                             rec.FechaRecargaT = item.FechaSms;
                             Recargas.Add(rec);
-                       
+
+                        }
+                        break;
+                    case "HOY":
+                        if (item.FechaSms == DateTime.Today)
+                        {
+                            if (item.CuerpoMensaje.ToUpper().Contains("FALLO"))
+                            {
+                                var rec = new RecargasRealizadas();
+                                rec.Numero = item.CuerpoMensaje.Split('.')[0];
+                                rec.Descripcion = string.Empty;
+                                rec.FechaRecargaT = item.FechaSms;
+                                rec.UrlImg = "fail";
+                                Recargas.Add(rec);
+                            }
+                            else if (item.CuerpoMensaje.ToUpper().Contains("TRANSACCION EXITOSA"))
+                            {
+                                var Fecha = DateTime.Now;
+                                var rec = new RecargasRealizadas();
+                                rec.UrlImg = "checked";
+                                var mess = item.CuerpoMensaje.Split('.');
+                                rec.Numero = mess[1];
+                                rec.FechaRecargaT = item.FechaSms;
+                                Recargas.Add(rec);
+                            }
+                        }
+                        break;
+                    case "SEMANA":
+                        if (item.FechaSms >= DateTime.Today.AddDays(-7))
+                        {
+                            if (item.CuerpoMensaje.ToUpper().Contains("FALLO"))
+                            {
+                                var rec = new RecargasRealizadas();
+                                rec.Numero = item.CuerpoMensaje.Split('.')[0];
+                                rec.Descripcion = string.Empty;
+                                rec.FechaRecargaT = item.FechaSms;
+                                rec.UrlImg = "fail";
+                                Recargas.Add(rec);
+                            }
+                            else if (item.CuerpoMensaje.ToUpper().Contains("TRANSACCION EXITOSA"))
+                            {
+                                var Fecha = DateTime.Now;
+                                var rec = new RecargasRealizadas();
+                                rec.UrlImg = "checked";
+                                var mess = item.CuerpoMensaje.Split('.');
+                                rec.Numero = mess[1];
+                                rec.FechaRecargaT = item.FechaSms;
+                                Recargas.Add(rec);
+                            }
+                        }
+                        break;
+                    case "MES":
+                        if (item.FechaSms >= DateTime.Today.AddDays(-30))
+                        {
+                            if (item.CuerpoMensaje.ToUpper().Contains("FALLO"))
+                            {
+                                var rec = new RecargasRealizadas();
+                                rec.Numero = item.CuerpoMensaje.Split('.')[0];
+                                rec.Descripcion = string.Empty;
+                                rec.FechaRecargaT = item.FechaSms;
+                                rec.UrlImg = "fail";
+                                Recargas.Add(rec);
+                            }
+                            else if (item.CuerpoMensaje.ToUpper().Contains("TRANSACCION EXITOSA"))
+                            {
+                                var Fecha = DateTime.Now;
+                                var rec = new RecargasRealizadas();
+                                rec.UrlImg = "checked";
+                                var mess = item.CuerpoMensaje.Split('.');
+                                rec.Numero = mess[1];
+                                rec.FechaRecargaT = item.FechaSms;
+                                Recargas.Add(rec);
+                            }
                         }
                         break;
                 }
             }
         }
-      
+
 
         public void CalcularVentasHoy()
         {
@@ -163,18 +268,18 @@ namespace ClaroNet3.ViewModels
                         if (item.FechaRecargaT == DateTime.Today)
                         {
                             var mess = int.Parse(item.Numero.Split(' ')[5]);
-                            if (VentasHoy==null)
-                              VentasHoy = mess;
+                            if (VentasHoy == null)
+                                VentasHoy = mess;
                             else
-                            VentasHoy += mess;
-                        }                       
+                                VentasHoy += mess;
+                        }
 
                     }
                 }
 
             }
-                   
-                     
+
+
         }
 
 

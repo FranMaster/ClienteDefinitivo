@@ -28,7 +28,7 @@ namespace CargasNetClient.Droid
                 Android.Manifest.Permission.ReadSms,
                 Android.Manifest.Permission.WriteSms
            }, 0);
-            LoadApplication(new App());
+            LoadApplication(new App(FileAccess.GetLocalFilePath("Users.db3")));
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
