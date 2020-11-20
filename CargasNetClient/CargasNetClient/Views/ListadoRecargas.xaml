@@ -19,7 +19,8 @@
                 <StackLayout                    
                     HorizontalOptions="Center"
                     Orientation="Horizontal">
-                    <Button Text="Hoy" Command="{Binding BtnHoy}"/>
+                    <Button Text="Hoy"                             
+                            Command="{Binding BtnHoy}"/>
                     <Button Text="Semana" Command="{Binding BtnSemana}"/>
                     <Button Text="Mes" Command="{Binding BtnMes}"/>
                 </StackLayout>

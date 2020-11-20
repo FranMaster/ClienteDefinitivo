@@ -13,7 +13,7 @@
     <MasterDetailPage.Detail>
         <NavigationPage>
             <x:Arguments>
-                <local:PrincipalPage Title="" />
+                <local:PrincipalPage Title="Cargas Net 4.1" />
             </x:Arguments>
         </NavigationPage>
     </MasterDetailPage.Detail>

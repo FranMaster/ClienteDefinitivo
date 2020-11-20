@@ -1,6 +1,8 @@
-﻿using ClaroNet3.Interfaces;
+﻿using CargasNetClient.Model;
+using ClaroNet3.Interfaces;
 using GalaSoft.MvvmLight.Command;
 using System;
+using System.Collections.Generic;
 using System.Net.Mail;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -64,10 +66,10 @@ namespace ClaroNet3.ViewModels
                 //    await Application.Current.MainPage.DisplayAlert("Aviso", "Su Periodo de Evaluación Termino.", "Volver");
                 //    return;
                 //}
-
+                var datos = (List <Users>) UserRepository.GetInstancia.GetAllUsers();
+                string pinGuardado = datos[0].Password;
                 if (string.IsNullOrEmpty(Telefono)
-                    || (string.IsNullOrEmpty(Monto))
-                    || (string.IsNullOrEmpty(Pin))
+                    || (string.IsNullOrEmpty(Monto))                    
                    )
                 {
                     await Application.Current.MainPage.DisplayAlert("Error", $"LLene todos los campos", "Accept");
@@ -76,7 +78,7 @@ namespace ClaroNet3.ViewModels
                 await Task.Run(() =>
                 {
                     DependencyService.Get<IServiceCaller>()
-                                     .RealizarLLamadaRecarga(Telefono, Monto, Pin);
+                                     .RealizarLLamadaRecarga(Telefono, Monto, pinGuardado);
 
                 });
             }

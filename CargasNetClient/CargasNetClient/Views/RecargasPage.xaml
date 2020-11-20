@@ -9,9 +9,8 @@
              BindingContext="{Binding Main,Source={StaticResource Locator}}"
              >
     <ContentPage.Content>
-        <ScrollView BindingContext="{Binding Recargas}">
-            
-        <Grid >              
+        <ScrollView BindingContext="{Binding Recargas}">            
+        
             <Grid >
                 <Grid>
                     <Grid.RowDefinitions>
@@ -54,19 +53,7 @@
                                         HorizontalTextAlignment="Start" Text="{Binding Monto}"/>
                                     </StackLayout>
                                 </Frame>
-                                <Frame CornerRadius="15" Margin="0,0,0,10"  Padding="5" BorderColor="#03254e"
-                                       IsVisible="{Binding ComponentesVisibles}">
-                                    <StackLayout Orientation="Horizontal"
-                                     HorizontalOptions="FillAndExpand">
-                                        <Image HeightRequest="40" WidthRequest="40"
-                                       Source="key"
-                                       />
-                                        <Entry HorizontalOptions="FillAndExpand"
-                                        Placeholder="Pin"
-                                        Keyboard="Numeric"
-                                        HorizontalTextAlignment="Start" Text="{Binding Pin}"/>
-                                    </StackLayout>
-                                </Frame>
+                               
                                     <Button Text="Enviar" CornerRadius="15" BackgroundColor="#03254e"
                                     TextColor="White" FontSize="Medium" FontAttributes="Bold"
                                     Command="{Binding BtnRecarga}"/>
@@ -76,7 +63,7 @@
                     <Grid Grid.Row="2" BackgroundColor="Transparent"/>
                 </Grid>
             </Grid>
-        </Grid>
+        
     
         </ScrollView>
     </ContentPage.Content>

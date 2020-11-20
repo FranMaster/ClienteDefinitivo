@@ -4,53 +4,40 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             Title="Enviar Factura a Email"
              BackgroundImageSource="fondo"
              x:Class="ClaroNet3.Views.EnviarMailView">
     <ContentPage.Content>
         <Grid >
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="0.1*" />
-                    <RowDefinition/>
-                    <RowDefinition Height="0.1*"/>
-                </Grid.RowDefinitions>
+            <Frame  CornerRadius="20"                    
+                       Opacity="0.7">
+                <StackLayout VerticalOptions="CenterAndExpand">
+                    <Image VerticalOptions="Start"                               
+                               Source="logo" 
+                           HeightRequest="100"></Image>
+                    <StackLayout VerticalOptions="End">
 
-                <Grid BackgroundColor="Transparent"/>
-                <Grid Grid.Row="1" BackgroundColor="Transparent">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="7*"/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Frame Grid.Column="1" VerticalOptions="CenterAndExpand" CornerRadius="20"
-                       Opacity="0.8">
-                        <StackLayout  >
-                         
-                            <Frame CornerRadius="15"  Margin="0,0,0,10"  Padding="5" >
-                                <StackLayout Orientation="Horizontal"
+                        <Frame CornerRadius="15"  Margin="0,0,0,10"  Padding="5" >
+                            <StackLayout Orientation="Horizontal"
                                      HorizontalOptions="FillAndExpand">
-                                    <Image HeightRequest="40" WidthRequest="40"
+                                <Image HeightRequest="40" WidthRequest="40"
                                        Source="email"/>
-                                    <Entry HorizontalOptions="FillAndExpand"
+                                <Entry HorizontalOptions="FillAndExpand"
                                        Placeholder="Email" x:Name="TxtEmail" />
-                                </StackLayout>
-                            </Frame>
-                            <Button 
+                            </StackLayout>
+                        </Frame>
+                        <Button 
                                 Text="Enviar Mail" 
                                 CornerRadius="15"
                                 BackgroundColor="Navy"
                                 TextColor="White"
                                 FontAttributes="Bold"
                                 Clicked="Button_Clicked"/>
-        
-                        </StackLayout>
-                    </Frame>
 
-                </Grid>
-                <Grid Grid.Row="2" BackgroundColor="Transparent"/>
-
-
-            </Grid>
+                    </StackLayout>
+                </StackLayout>
+               
+                </Frame>
         </Grid>
 
     </ContentPage.Content>

@@ -8,11 +8,11 @@ namespace ApiConsumer.Services
 {
     public class ConsultaDispositivosServices:BaseService
     {
-        public GenericResponse<VerificacionRequest> VerificarUsuario(VerificacionRequest verificacionRequest)
+        public GenericResponse<VerificacionResponse> VerificarUsuario(VerificacionRequest verificacionRequest)
         {
             string Url = "https://backcargas.herokuapp.com";
             string controller = "verify";
-            return base.Post<VerificacionRequest>(Url, controller, verificacionRequest);
+            return base.Post<VerificacionResponse>(Url, controller, verificacionRequest);
         }
     }
 

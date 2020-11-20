@@ -4,6 +4,7 @@ using CargasNetClient.Model;
 using ClaroNet3.ViewModels;
 using ClaroNet3.Views;
 using GalaSoft.MvvmLight.Command;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace CargasNetClient.ViewModels
@@ -42,36 +43,57 @@ namespace CargasNetClient.ViewModels
         }
 
 
-        private void EnviarDatos()
+        private async void EnviarDatos()
         {
-            ConsultaDispositivosServices servicio = new ConsultaDispositivosServices();
-            var res = servicio.VerificarUsuario(new VerificacionRequest
+
+            var current = Connectivity.NetworkAccess;
+
+            if (current == NetworkAccess.Internet)
             {
-                numeroTel = "1042436738",
-                pin = "0"
-            });
-            if (res.Success)
-            {
-                var datos = res.ObjectData;
-                int sql = UserRepository.GetInstancia.AddNewUser(
-                         datos.email,
-                         "",
-                         datos.email,
-                         datos.id.ToString()
-                 );
-                if (sql > 0)
+                ConsultaDispositivosServices servicio = new ConsultaDispositivosServices();
+                var res = servicio.VerificarUsuario(new VerificacionRequest
                 {
-                    //continuar con la siguiente pagina
+                    numeroTel = Telefono?.Trim(),
+                    pin = Pin?.Trim(),
+                    email=Mail?.Trim()
+                });
+                if (res.Success)
+                {
+                    if (res.ObjectData.Data.Count==0)
+                    {
+                        await Application.Current.MainPage
+                            .DisplayAlert("No encontrado", 
+                                          "Esta terminal aun no se ha dado de alta",
+                                          "Volver");
+                        return;
+                    }
+                    var datos = res.ObjectData.Data[0];
+                    int sql = UserRepository.GetInstancia.AddNewUser(
+                             datos.Email,
+                             datos.Pin,
+                             datos.Email,
+                             datos.Id.ToString()
+                     );
+                    if (sql > 0)
+                    {
+                        MainVewModel.GetInstance.ConfiguracionInicial();
+                        Application.Current.MainPage = new NavigationPage(new MasterPage());
+                    }
+                    else
+                    {
+                        await Application.Current.MainPage.DisplayAlert("No encontrado", "Esta terminal aun no se ha dado de alta", "Volver");
+                    }
                 }
                 else
                 {
-                    //mandar pagina de error
+                    await Application.Current.MainPage.DisplayAlert("No encontrado", "Esta terminal aun no se ha dado de alta", "Volver");
                 }
             }
             else
             {
-                var b = 0;
+               await Application.Current.MainPage.DisplayAlert("Revise su Conexión", "No tienes conexión a internet", "Volver");
             }
+         
         }
     }
 }

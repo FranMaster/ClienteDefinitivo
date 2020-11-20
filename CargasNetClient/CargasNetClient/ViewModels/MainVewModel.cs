@@ -64,11 +64,12 @@ namespace ClaroNet3.ViewModels
 
         public async Task ConsultaSaldo()
         {
-            string result = await Application.Current.MainPage.DisplayPromptAsync("Aviso", "Ingrese su Pin Asignado");
-            if (!string.IsNullOrEmpty(result))
+            var datos = (List<Users>)UserRepository.GetInstancia.GetAllUsers();
+            string pinGuardado = datos[0].Password;
+            if (!string.IsNullOrEmpty(pinGuardado))
                 await Task.Run(() =>
             DependencyService.Get<IServiceCaller>()
-                       .RealizarLLamadaSaldo(result));
+                       .RealizarLLamadaSaldo(pinGuardado));
         }
 
         public List<InboxSms> ListarDatos()

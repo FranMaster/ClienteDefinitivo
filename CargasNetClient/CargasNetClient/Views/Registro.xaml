@@ -58,8 +58,9 @@
                                        />
                             <Entry HorizontalOptions="FillAndExpand"
                                         Placeholder="Mail"
-                                        Keyboard="Numeric"
-                                        HorizontalTextAlignment="Start" Text="{Binding Mail}"/>
+                                        Keyboard="Email"
+                                        HorizontalTextAlignment="Start"
+                                        Text="{Binding Mail}"/>
                         </StackLayout>
 
                         <Button Text="Enviar" CornerRadius="15" BackgroundColor="#03254e"
