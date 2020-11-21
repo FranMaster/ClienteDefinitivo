@@ -47,7 +47,7 @@
                          Grid.Row="1"
                          >
                 <Label Text="Id:"/>
-                <Label Text="1"/>
+                <Label Text="{Binding IdDispositivos}"/>
             </StackLayout>
         </Grid>    
     </ContentPage.Content>

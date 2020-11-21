@@ -8,7 +8,8 @@
              BindingContext="{Binding Main,Source={StaticResource Locator}}"
              x:Class="CargasNetClient.Views.Registro">
     <ContentPage.Content>
-        <Grid BindingContext="{Binding Registro}" >
+        <ScrollView>            
+          <Grid BindingContext="{Binding Registro}" >
             <Image Source="fondo" Aspect="Fill"></Image>
             <Frame  BackgroundColor="White"
                     Opacity="0.9"
@@ -70,5 +71,6 @@
                 </StackLayout>
             </Frame>
         </Grid>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

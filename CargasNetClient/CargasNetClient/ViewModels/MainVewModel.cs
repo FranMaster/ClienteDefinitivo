@@ -59,6 +59,7 @@ namespace ClaroNet3.ViewModels
                 new ItemMenuModel{Icon="home",Title="Soporte"}                
              
             };
+            IdDispositivos = UserRepository.GetInstancia.GetAllUsers()[0]?.CodigoSql;
         }
 
 
@@ -95,5 +96,14 @@ namespace ClaroNet3.ViewModels
             Recargas.ComponentesVisibles = true;
             LoadMenu();
         }
+
+        private string _IdDispositivos;
+
+        public string IdDispositivos
+        {
+            get { return _IdDispositivos; }
+            set { _IdDispositivos = value;  }
+        }
+
     }
 }
