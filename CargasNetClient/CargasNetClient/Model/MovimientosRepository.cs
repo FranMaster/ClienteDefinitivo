@@ -5,13 +5,13 @@ using System.Text;
 
 namespace CargasNetClient.Model
 {
-    public class UserRepository
+    public class MovimientosRepository
     {
         private SQLiteConnection cnn;
 
-        private static UserRepository instancia;
+        private static MovimientosRepository instancia;
 
-        public static UserRepository GetInstancia
+        public static MovimientosRepository GetInstancia
         {
             get
             {
@@ -34,25 +34,25 @@ namespace CargasNetClient.Model
             if (instancia!=null)
                 instancia.cnn.Close();
             
-            instancia = new UserRepository(FileName);
+            instancia = new MovimientosRepository(FileName);
         }
 
 
 
 
-        private UserRepository(string DbPath)
+        private MovimientosRepository(string DbPath)
         {
             cnn = new SQLiteConnection(DbPath);
-            cnn.CreateTable<Users>();
+            cnn.CreateTable<Movimientos>();
         }
 
        
-        public int AddNewUser(string username,string password,string email,string codigosql)
+        public int AddNewMovement(string IdDispositivo,string Desc)
         {
             int result = 0;
             try
             {
-                result = cnn.Insert(new Users { Usuario = username, Email = email, Password = password,CodigoSql=codigosql });
+                result = cnn.Insert(new Movimientos { IdDispositivo=IdDispositivo,Descripcion=Desc,FechaMovimiento=DateTime.Now});
 
             }
             catch (Exception e)
@@ -62,14 +62,29 @@ namespace CargasNetClient.Model
             return result;
         }
 
-        public IList<Users> GetAllUsers()
+        public IList<Movimientos> GetAllMovement()
         {
             try
             {
-                return cnn.Table<Users>().ToList();
+                return cnn.Table<Movimientos>().ToList();
             }
             catch (Exception e)
             {
+                throw e;
+            }
+        }
+
+        public int DeleteAllMovement()
+        {
+            int result = 0;
+            try
+            {
+                result = cnn.DeleteAll<Movimientos>();
+                return result;
+            }
+            catch (Exception e)
+            {
+
                 throw e;
             }
         }

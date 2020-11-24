@@ -4,6 +4,7 @@ using CargasNetClient.Model;
 using ClaroNet3.ViewModels;
 using ClaroNet3.Views;
 using GalaSoft.MvvmLight.Command;
+using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -11,6 +12,32 @@ namespace CargasNetClient.ViewModels
 {
     public class RegistroViewModel : BaseViewModel
     {
+
+        private bool _Running;
+
+        public bool Running
+        {
+            get { return _Running; }
+            set { _Running = value; OnPropertyChanged(nameof(Running)); }
+        }
+
+
+        private bool _habilitarBoton=true;
+
+        public bool HabilitarBoton
+        {
+            get { return _habilitarBoton; }
+            set { _habilitarBoton = value; OnPropertyChanged(nameof(HabilitarBoton)); }
+        }
+
+
+
+
+
+
+
+
+
         private string _Telefono;
 
         public string Telefono
@@ -37,17 +64,47 @@ namespace CargasNetClient.ViewModels
         {
             get
             {
-                return new RelayCommand(EnviarDatos);
+                return new RelayCommand(Hacerlo);
             }
 
         }
 
-
-        private async void EnviarDatos()
+        public  void Corriendo()
         {
+            Running = true;
+            HabilitarBoton = false;
+        }
 
+        public  void Finalizado()
+        {
+            Running = false;
+            HabilitarBoton = true;
+        }
+
+
+        public async void Hacerlo()
+        {
+            await Task.Run(Corriendo);
+            var response = await Task.Run(EnviarDatos);
+            if (response=="ok")
+            {
+                MainVewModel.GetInstance.ConfiguracionInicial();
+                Application.Current.MainPage = new NavigationPage(new MasterPage());
+            }
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert("Advertencia", response, "Volver");
+            }
+            await Task.Run(Finalizado);
+        }
+
+
+
+        private  Task<string> EnviarDatos()
+        {
+           
             var current = Connectivity.NetworkAccess;
-
+                
             if (current == NetworkAccess.Internet)
             {
                 ConsultaDispositivosServices servicio = new ConsultaDispositivosServices();
@@ -55,18 +112,12 @@ namespace CargasNetClient.ViewModels
                 {
                     numeroTel = Telefono?.Trim(),
                     pin = Pin?.Trim(),
-                    email=Mail?.Trim()
+                    email = Mail?.Trim()
                 });
                 if (res.Success)
                 {
-                    if (res.ObjectData.Data.Count==0)
-                    {
-                        await Application.Current.MainPage
-                            .DisplayAlert("No encontrado", 
-                                          "Esta terminal aun no se ha dado de alta",
-                                          "Volver");
-                        return;
-                    }
+                    if (res.ObjectData.Data.Count == 0)                                                                   
+                        return  Task.FromResult("Esta terminal aun no se ha dado de alta");                    
                     var datos = res.ObjectData.Data[0];
                     int sql = UserRepository.GetInstancia.AddNewUser(
                              datos.Email,
@@ -75,25 +126,23 @@ namespace CargasNetClient.ViewModels
                              datos.Id.ToString()
                      );
                     if (sql > 0)
-                    {
-                        MainVewModel.GetInstance.ConfiguracionInicial();
-                        Application.Current.MainPage = new NavigationPage(new MasterPage());
-                    }
+                        return Task.FromResult("ok");                
                     else
-                    {
-                        await Application.Current.MainPage.DisplayAlert("No encontrado", "Esta terminal aun no se ha dado de alta", "Volver");
-                    }
+                        return Task.FromResult("Esta terminal aun no se ha dado de alta");
+                    
                 }
                 else
                 {
-                    await Application.Current.MainPage.DisplayAlert("No encontrado", "Esta terminal aun no se ha dado de alta", "Volver");
+
+                    return Task.FromResult("Esta terminal aun no se ha dado de alta");
                 }
             }
             else
             {
-               await Application.Current.MainPage.DisplayAlert("Revise su Conexión", "No tienes conexión a internet", "Volver");
+
+                return Task.FromResult("No tienes conexión a internet");
             }
-         
+
         }
     }
 }

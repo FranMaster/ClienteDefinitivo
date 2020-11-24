@@ -14,6 +14,7 @@ namespace CargasNetClient
         public App( string fileName)
         {
             UserRepository.Inicializador(fileName);
+            MovimientosRepository.Inicializador(fileName);
             InitializeComponent();
             var Usuarios = UserRepository.GetInstancia.GetAllUsers();
             if (Usuarios.Count > 0)

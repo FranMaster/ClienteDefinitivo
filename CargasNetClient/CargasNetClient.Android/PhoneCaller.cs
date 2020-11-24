@@ -9,7 +9,7 @@ namespace ClaroClient3.Droid
     public class PhoneCaller : IServiceCaller
     {
         //pin fran 2232
-        public  void RealizarLLamadaRecarga(string phone, string monto,string pin)
+        public void RealizarLLamadaRecarga(string phone, string monto, string pin)
         {
             try
             {
@@ -18,10 +18,10 @@ namespace ClaroClient3.Droid
                 var ussd = string.Format("tel:{0}", Combinacion);
                 foreach (char c in ussd.ToCharArray())
                 {
-                    if (c == '#')                    
-                        uri += Android.Net.Uri.Encode("#");                    
-                    else                    
-                       uri += c;                    
+                    if (c == '#')
+                        uri += Android.Net.Uri.Encode("#");
+                    else
+                        uri += c;
                 }
                 var Uri = Android.Net.Uri.Parse(uri);
                 var intent = new Intent(Intent.ActionCall, Uri);
@@ -31,13 +31,13 @@ namespace ClaroClient3.Droid
                 Android.App.Application.Context.StartActivity(intent);
 
             }
-            catch (System.Exception e )
+            catch (System.Exception e)
             {
                 throw e;
             }
         }
 
-        public  void RealizarLLamadaSaldo(string pin)
+        public void RealizarLLamadaSaldo(string pin)
         {
             try
             {
@@ -46,10 +46,10 @@ namespace ClaroClient3.Droid
                 var ussd = string.Format("tel:{0}", Combinacion);
                 foreach (char c in ussd.ToCharArray())
                 {
-                    if (c == '#')                    
-                        uri += Android.Net.Uri.Encode("#");                    
-                    else                    
-                        uri += c;                    
+                    if (c == '#')
+                        uri += Android.Net.Uri.Encode("#");
+                    else
+                        uri += c;
                 }
                 var Uri = Android.Net.Uri.Parse(uri);
                 var intent = new Intent(Intent.ActionCall, Uri);

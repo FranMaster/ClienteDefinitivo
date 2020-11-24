@@ -200,6 +200,12 @@ namespace ClaroNet3.ViewModels
                                 Recargas.Add(rec);
                             }
                         }
+                        else
+                        {
+                            Application.Current.MainPage.DisplayAlert("Fecha Msn", 
+                                                                     item.FechaSms.ToString(),
+                                                                     "volver");
+                        }
                         break;
                     case "SEMANA":
                         if (item.FechaSms >= DateTime.Today.AddDays(-7))

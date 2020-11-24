@@ -8,10 +8,11 @@
              BindingContext="{Binding Main,Source={StaticResource Locator}}"
              x:Class="CargasNetClient.Views.Registro">
     <ContentPage.Content>
-        <ScrollView>            
-          <Grid BindingContext="{Binding Registro}" >
-            <Image Source="fondo" Aspect="Fill"></Image>
-            <Frame  BackgroundColor="White"
+
+        <ScrollView>
+            <Grid BindingContext="{Binding Registro}" >
+                <Image Source="fondo" Aspect="AspectFill"></Image>
+                <Frame  BackgroundColor="White"
                     Opacity="0.9"
                     Margin="15"
                     HasShadow="True"
@@ -19,58 +20,62 @@
                     VerticalOptions="Center"
                     
                     >
-                <StackLayout VerticalOptions="EndAndExpand" >
-                    <StackLayout HorizontalOptions="Center">
-                        <Image Source="Logo" Aspect="AspectFit"
+                    <StackLayout VerticalOptions="EndAndExpand" >
+                        <StackLayout HorizontalOptions="Center">
+                            <Image Source="Logo" Aspect="AspectFit"
                                HeightRequest="70" />
-                    </StackLayout>
-                    <StackLayout Padding="30" Spacing="30">
+                        </StackLayout>
+                        <StackLayout Padding="30" Spacing="30">
 
-                        <Label Text="Ingresa los datos para esta Terminal" 
+                            <Label Text="Ingresa los datos para esta Terminal" 
                                HorizontalTextAlignment="Center"></Label>
-                        <StackLayout Orientation="Horizontal"
+                            <StackLayout Orientation="Horizontal"
                                      HorizontalOptions="FillAndExpand">
-                            <Image HeightRequest="40" WidthRequest="40"
+                                <Image HeightRequest="40" WidthRequest="40"
                                        Source="smartphone"/>
-                            <Entry HorizontalOptions="FillAndExpand"
+                                <Entry HorizontalOptions="FillAndExpand"
                                        Placeholder="Telefono" 
                                            Keyboard="Telephone"
                                            Text="{Binding Telefono,UpdateSourceEventName=PropertyChanged}"/>
-                        </StackLayout>
+                            </StackLayout>
 
 
 
-                        <StackLayout Orientation="Horizontal"
+                            <StackLayout Orientation="Horizontal"
                                      HorizontalOptions="FillAndExpand">
-                            <Image HeightRequest="40" WidthRequest="40"
+                                <Image HeightRequest="40" WidthRequest="40"
                                        Source="key"
                                        />
-                            <Entry HorizontalOptions="FillAndExpand"
+                                <Entry HorizontalOptions="FillAndExpand"
                                         Placeholder="Pin"
                                         Keyboard="Numeric"
                                         HorizontalTextAlignment="Start" Text="{Binding Pin}"/>
-                        </StackLayout>
+                            </StackLayout>
 
 
-                        <StackLayout Orientation="Horizontal"
+                            <StackLayout Orientation="Horizontal"
                                      HorizontalOptions="FillAndExpand">
-                            <Image HeightRequest="40" WidthRequest="40"
+                                <Image HeightRequest="40" WidthRequest="40"
                                        Source="email"
                                        />
-                            <Entry HorizontalOptions="FillAndExpand"
+                                <Entry HorizontalOptions="FillAndExpand"
                                         Placeholder="Mail"
                                         Keyboard="Email"
                                         HorizontalTextAlignment="Start"
                                         Text="{Binding Mail}"/>
+                            </StackLayout>
+   
+                            <ActivityIndicator IsVisible="{Binding Running}"
+                                               IsRunning="{Binding Running}"/>
+                            <Button Text="Enviar" CornerRadius="15" BackgroundColor="#03254e"
+                                    TextColor="White"  Command="{Binding EnviarCommand}"
+                                    IsEnabled="{Binding HabilitarBoton}"/>
                         </StackLayout>
 
-                        <Button Text="Enviar" CornerRadius="15" BackgroundColor="#03254e"
-                                    TextColor="White"  Command="{Binding EnviarCommand}"/>
                     </StackLayout>
-
-                </StackLayout>
-            </Frame>
-        </Grid>
+                </Frame>
+            </Grid>
         </ScrollView>
+
     </ContentPage.Content>
 </ContentPage>

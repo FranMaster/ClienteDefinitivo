@@ -1,10 +1,12 @@
-﻿using CargasNetClient.Model;
+﻿using ApiConsumer.Services;
+using CargasNetClient.Model;
 using ClaroNet3.Interfaces;
 using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.Net.Mail;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace ClaroNet3.ViewModels
@@ -81,11 +83,14 @@ namespace ClaroNet3.ViewModels
                                      .RealizarLLamadaRecarga(Telefono, Monto, pinGuardado);
 
                 });
+                Telefono = string.Empty;
+                Monto = string.Empty;
             }
             catch (Exception ed)
             {
                 await Application.Current.MainPage.DisplayAlert("Error", $"{ed.Message}.", "Accept");
-
+                Telefono = string.Empty;
+                Monto = string.Empty;
             }
         }
 
@@ -98,11 +103,37 @@ namespace ClaroNet3.ViewModels
 
         private void RecargasViewModel_Mensajes(object sender, EventArgs e)
         {
-            
-
+            var UltimoMensaje = (List<InboxSms>)sender;
+            var id=UserRepository.GetInstancia.GetAllUsers()[0]?.CodigoSql;
+            InsertarMovimiento(UltimoMensaje[0]?.CuerpoMensaje, id);
         }
 
+        public async void InsertarMovimiento(string description,string IdDispositivo)
+        {
+            try
+            {
+                var current = Connectivity.NetworkAccess;
 
-    
+                if (current == NetworkAccess.Internet)
+                {
+                    ConsultaMovimientosService service = new ConsultaMovimientosService();
+                    service.InsertarMovimiento(new MovimientosRequest
+                    {
+                        description = description,
+                        Fecha = DateTime.Now.ToString(),
+                        IdDispositivo = IdDispositivo
+                    });
+                }
+                else
+                {
+                    MovimientosRepository.GetInstancia.AddNewMovement(IdDispositivo, description);
+                }
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
+        }
     }
 }
